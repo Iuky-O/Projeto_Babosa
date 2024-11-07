@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação de Plantas</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Classifique a Planta</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <label for="file">Escolha uma imagem da planta:</label>
+            <input type="file" name="file" id="file" required>
+            <button type="submit">Enviar</button>
+        </form>
+
+        {% if prediction_en and prediction_pt %}
+        <h2>Resultado:</h2>
+        <p><strong>Classe em Inglês:</strong> {{ prediction_en }}</p>
+        <p><strong>Classe em Português:</strong> {{ prediction_pt }}</p>
+        <img src="{{ url_for('upload_file', filename=image_path.split('/')[-1]) }}" alt="Planta classificada" width="300">
+        {% endif %}
+    </div>
+</body>
+</html>
